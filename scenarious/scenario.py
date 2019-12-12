@@ -54,7 +54,7 @@ class Scenario(object):
         if isinstance(source, dict):
             raw = source
         else:
-            raw = yaml.load(open(source) if isinstance(source, six.string_types) else source)
+            raw = yaml.full_load(open(source) if isinstance(source, six.string_types) else source)
 
         for entity, value in (raw or {}).items():
             objects = [{}] * value if isinstance(value, int) else value
@@ -94,7 +94,7 @@ class Scenario(object):
             type_name = self._get_type_name(key)
 
             if self._entity_store.has_type(type_name):
-                return list(self._entity_store.all(type_name))
+                return self._entity_store.all(type_name)
 
             else:
                 raise AttributeError("%s doesn't have type '%s'" % (self.__class__.__name__, type_name))
