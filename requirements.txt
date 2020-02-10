@@ -1,4 +1,4 @@
 six
-pyyaml
-faker
+pyyaml==5.2
+Faker==2.0.3
 dateparser
